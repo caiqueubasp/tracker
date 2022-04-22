@@ -1,16 +1,24 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+  <main class="columns is-gapless is-multiline">
+    <div class="column is-one-quarter">
+      <BarraLateral />
+    </div>
+    <div class="column is-three-quarter">
+      <FormTask />
+    </div>
+  </main>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import HelloWorld from "./components/HelloWorld.vue";
+import BarraLateral from "@/components/BarraLateral.vue";
+import FormTask from "@/components/FormTask.vue";
 
 export default defineComponent({
   name: "App",
   components: {
-    HelloWorld,
+    BarraLateral,
+    FormTask,
   },
 });
 </script>
@@ -22,6 +30,5 @@ export default defineComponent({
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>

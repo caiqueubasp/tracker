@@ -14,25 +14,7 @@
       </div>
 
       <div class="column">
-        <div
-          class="is-flex is-align-item-center is-justify-content-space-between"
-        >
-          <section class="is-flex is-align-item-center is-align-items-center">
-            <strong>{{ updateTime }}</strong>
-          </section>
-          <button class="button" @click="initCount">
-            <span class="icon">
-              <i class="fas fa-play"></i>
-            </span>
-            <span>play</span>
-          </button>
-          <button class="button" @click="stopCount">
-            <span class="icon">
-              <i class="fas fa-stop"></i>
-            </span>
-            <span>stop</span>
-          </button>
-        </div>
+        <Timer />
       </div>
     </div>
   </div>
@@ -40,29 +22,12 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import Timer from "@/components/Timer.vue";
 
 export default defineComponent({
   name: "FormTask",
-  data() {
-    return {
-      time: 0,
-      timer: 0,
-    };
-  },
-  computed: {
-    updateTime(): string {
-      return new Date(this.time * 1000).toISOString().substr(11, 8);
-    },
-  },
-  methods: {
-    initCount() {
-      this.timer = setInterval(() => {
-        this.time += 1;
-      }, 1000);
-    },
-    stopCount() {
-      clearInterval(this.timer);
-    },
+  components: {
+    Timer,
   },
 });
 </script>

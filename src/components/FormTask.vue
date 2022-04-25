@@ -10,11 +10,12 @@
           type="text"
           class="input"
           placeholder="Qual tarefa voce deseja iniciar?"
+          v-model="taskDescription"
         />
       </div>
 
       <div class="column">
-        <Timer />
+        <Timer @endTimer="endTask" />
       </div>
     </div>
   </div>
@@ -28,6 +29,16 @@ export default defineComponent({
   name: "FormTask",
   components: {
     Timer,
+  },
+  data() {
+    return { taskDescription: "" };
+  },
+  methods: {
+    endTask(taskTime: number): void {
+      console.log(`Tempo da tarefa ${taskTime}`);
+      console.log(`Descricao da tarefa ${this.taskDescription}`);
+      this.taskDescription = "";
+    },
   },
 });
 </script>

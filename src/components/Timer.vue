@@ -2,30 +2,34 @@
   <div class="is-flex is-align-item-center is-justify-content-space-between">
     <StopWatch :time="time" />
 
-    <button class="button" @click="initCount" :disabled="isTimerActive">
-      <span class="icon">
-        <i class="fas fa-play"></i>
-      </span>
-      <span>play</span>
-    </button>
-    <button class="button" @click="stopCount" :disabled="!isTimerActive">
-      <span class="icon">
-        <i class="fas fa-stop"></i>
-      </span>
-      <span>stop</span>
-    </button>
+    <DefaultButton
+      iconClass="fas fa-play"
+      text="play"
+      :isDisabled="isTimerActive"
+      @click="initCount"
+    />
+
+    <DefaultButton
+      iconClass="fas fa-stop"
+      text="stop"
+      :isDisabled="!isTimerActive"
+      @click="stopCount"
+    />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 import StopWatch from "@/components/StopWatch.vue";
+import DefaultButton from "@/components/DefaultButton.vue";
 
 export default defineComponent({
   name: "TimerManager",
+  emits: ["endTimer"],
   props: {},
   components: {
     StopWatch,
+    DefaultButton,
   },
   data() {
     return {
@@ -44,6 +48,8 @@ export default defineComponent({
     stopCount() {
       this.isTimerActive = false;
       clearInterval(this.timer);
+      this.$emit("endTimer", this.timer);
+      this.timer = 0;
     },
   },
 });
